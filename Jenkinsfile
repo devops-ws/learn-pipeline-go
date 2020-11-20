@@ -15,7 +15,20 @@ pipeline {
 
         stage ('Build Code') {
             agent {
-                label 'golang'
+                kubernetes {
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        spec:
+                        containers:
+                        - name: golang
+                            image: registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5
+                            command:
+                            - cat
+                            tty: true
+                    '''
+                    label 'golang'
+                }
             }
             steps {
                 container ('golang') {
@@ -26,7 +39,27 @@ pipeline {
 
         stage ('Build Image') {
             agent {
-                label 'docker'
+                kubernetes {
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        metadata:
+                        labels:
+                            app: helm-push
+                        spec:
+                        volumes:
+                        - hostPathVolume:
+                            hostPath: "/var/run/docker.sock"
+                            mountPath: "/var/run/docker.sock"
+                        containers:
+                        - name: docker
+                            image: registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5
+                            command:
+                            - cat
+                            tty: true
+                    '''
+                    label 'golang'
+                }
             }
             steps {
                 container ('docker') {
@@ -37,7 +70,23 @@ pipeline {
 
         stage ('Charts Package') {
             agent {
-                label 'helm'
+                kubernetes {
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        metadata:
+                        labels:
+                            app: helm-push
+                        spec:
+                        containers:
+                        - name: helm
+                            image: alpine/helm:3.4.1
+                            command:
+                            - cat
+                            tty: true
+                    '''
+                    label 'helm'
+                }
             }
             steps {
                 container ('helm') {
