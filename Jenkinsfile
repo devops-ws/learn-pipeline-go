@@ -48,13 +48,36 @@ pipeline {
 
         stage ('Charts Upload') {
             agent {
-                label 'helm'
+                kubernetes {
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        metadata:
+                        labels:
+                            app: helm-push
+                        spec:
+                        containers:
+                        - name: helm
+                            image: surenpi/helm-push:v0.0.1
+                            command:
+                            - cat
+                            tty: true
+                    '''
+                    label 'helm-push'
+                }
             }
             steps {
                 container ('helm') {
                     sh label: 'Charts Upload', script: '''
+                    helm push mychart/ http://localhost:8080
+                    '''
+
+                    /**
+                    # Or you can use the curl command directly
+                    sh label: 'Charts Upload', script: '''
                     curl -L --data-binary "@go-server-0.1.0.tgz" http://localhost:8080/api/charts
                     '''
+                    */
                 }
             }
         }
