@@ -17,15 +17,15 @@ pipeline {
             agent {
                 kubernetes {
                     yaml '''
-                        apiVersion: v1
-                        kind: Pod
-                        spec:
-                        containers:
-                        - name: golang
-                            image: registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5
-                            command:
-                            - cat
-                            tty: true
+apiVersion: v1
+kind: Pod
+spec:
+containers:
+- name: golang
+  image: registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5
+  command:
+  - cat
+  tty: true
                     '''
                     label 'golang'
                 }
@@ -41,22 +41,22 @@ pipeline {
             agent {
                 kubernetes {
                     yaml '''
-                        apiVersion: v1
-                        kind: Pod
-                        metadata:
-                        labels:
-                            app: helm-push
-                        spec:
-                        volumes:
-                        - hostPathVolume:
-                            hostPath: "/var/run/docker.sock"
-                            mountPath: "/var/run/docker.sock"
-                        containers:
-                        - name: docker
-                            image: registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5
-                            command:
-                            - cat
-                            tty: true
+apiVersion: v1
+kind: Pod
+metadata:
+labels:
+  app: helm-push
+spec:
+volumes:
+- hostPathVolume:
+  hostPath: "/var/run/docker.sock"
+  mountPath: "/var/run/docker.sock"
+containers:
+- name: docker
+  image: registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5
+  command:
+  - cat
+  tty: true
                     '''
                     label 'golang'
                 }
@@ -72,18 +72,16 @@ pipeline {
             agent {
                 kubernetes {
                     yaml '''
-                        apiVersion: v1
-                        kind: Pod
-                        metadata:
-                        labels:
-                            app: helm-push
-                        spec:
-                        containers:
-                        - name: helm
-                            image: alpine/helm:3.4.1
-                            command:
-                            - cat
-                            tty: true
+apiVersion: v1
+kind: Pod
+metadata:
+spec:
+  containers:
+  - name: helm
+    image: alpine/helm:3.4.1
+    command:
+    - cat
+    tty: true
                     '''
                     label 'helm'
                 }
@@ -99,18 +97,16 @@ pipeline {
             agent {
                 kubernetes {
                     yaml '''
-                        apiVersion: v1
-                        kind: Pod
-                        metadata:
-                        labels:
-                            app: helm-push
-                        spec:
-                        containers:
-                        - name: helm
-                            image: surenpi/helm-push:v0.0.1
-                            command:
-                            - cat
-                            tty: true
+apiVersion: v1
+kind: Pod
+app: helm-push
+spec:
+  containers:
+  - name: helm
+  image: surenpi/helm-push:v0.0.1
+  command:
+  - cat
+  tty: true
                     '''
                     label 'helm-push'
                 }
