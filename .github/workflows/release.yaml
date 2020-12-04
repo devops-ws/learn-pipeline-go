@@ -7,7 +7,7 @@ on:
     branches:
       - master
 jobs:
-  goreleaser:
+  Image:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -39,5 +39,5 @@ jobs:
       uses: peter-evans/dockerhub-description@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
         repository: devopsws/go-server
