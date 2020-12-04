@@ -1,3 +1,5 @@
+[![Docker Pulls](https://img.shields.io/docker/pulls/devopsws/go-server.svg)](https://hub.docker.com/r/devopsws/go-server/tags)
+
 This is very simple HTTP server written by golang.
 
 # Get started
