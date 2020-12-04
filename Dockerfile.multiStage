@@ -3,7 +3,7 @@ FROM golang AS builder
 WORKDIR /work
 COPY . .
 
-RUN GOOS=linux GOARCH=amd64 go build -o go-server
+RUN go build -o go-server
 
 FROM alpine:3.11.5
 

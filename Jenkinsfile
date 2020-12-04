@@ -22,7 +22,7 @@ kind: Pod
 spec:
 containers:
 - name: golang
-  image: registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5
+  image: "registry.cn-beijing.aliyuncs.com/surenpi/golang:1.15.5"
   command:
   - cat
   tty: true
