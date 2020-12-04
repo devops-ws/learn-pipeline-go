@@ -3,7 +3,11 @@ FROM golang AS builder
 WORKDIR /work
 COPY . .
 
-RUN CGO_ENABLED=0 go build -o go-server
+RUN CGO_ENABLED=0 go build -o go-server -ldflags "-w"
+
+FROM gruebel/upx:latest as upx
+COPY --from=builder /work/go-server /work/go-server
+RUN upx /work/go-server
 
 FROM alpine:3.11.5
 
@@ -12,6 +16,6 @@ LABEL Description="This is a demo for golang HTTP server"
 
 EXPOSE 80
 
-COPY --from=builder /work/go-server go-server
+COPY --from=upx /work/go-server go-server
 
 CMD ["./go-server"]
