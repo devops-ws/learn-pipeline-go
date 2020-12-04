@@ -3,7 +3,7 @@ FROM golang AS builder
 WORKDIR /work
 COPY . .
 
-RUN go build -o go-server
+RUN CGO_ENABLED=0 go build -o go-server
 
 FROM alpine:3.11.5
 
