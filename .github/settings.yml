@@ -1,6 +1,6 @@
 repository:
-  name: jcli-ishell-plugin
-  description: Jenkins CLI allows you manage your Jenkins as an easy way
+  name: learn-pipeline-go
+  description: This is very simple HTTP server written by golang.
   homepage: https://jenkins-zh.cn
   private: false
   has_issues: true
