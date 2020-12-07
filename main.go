@@ -14,6 +14,7 @@ import (
 func main()  {
 	sm := http.NewServeMux()
 	sm.Handle("/", &handler.HelloWorld{})
+	sm.Handle("/version", &handler.Version{})
 
 	svr := http.Server{
 		Addr: ":80",
