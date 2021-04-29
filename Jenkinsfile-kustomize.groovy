@@ -40,10 +40,10 @@ spec:
           sh "docker build -f Dockerfile.multiStage -t devopsws/go-server:${env.GIT_COMMIT} ."
 
           // Publish new image
-          sh '''
+          sh """
           docker login --username $DOCKERHUB_CREDS_USR --password $DOCKERHUB_CREDS_PSW
           docker push devopsws/go-server:${env.GIT_COMMIT}
-          '''
+          """
         }
       }
     }
