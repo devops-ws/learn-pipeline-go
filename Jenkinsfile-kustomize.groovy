@@ -54,10 +54,11 @@ spec:
       }
       steps {
         container('tools') {
-          sh "git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@gitee.com/devops-workspace/learn-kustomize.git"
+          sh "git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/devops-ws/learn-kustomize.git"
           sh "git config --global user.email 'ci@ci.com'"
 
-          dir("argocd-demo-deploy") {
+          dir("learn-kustomize") {
+            sh "ls -ahl"
             sh "kustomize edit set image devopsws/go-server:${env.GIT_COMMIT}"
             sh "git commit -am 'Publish new version' && git push || echo 'no changes'"
           }
