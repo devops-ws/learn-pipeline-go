@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: go-demo
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.demo: "semver:~v1.0"
+    fluxcd.io/tag.demo: "semver:~v0.0"
 spec:
   selector:
     matchLabels:
