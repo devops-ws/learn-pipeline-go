@@ -11,3 +11,9 @@ then you can visit it via: `curl http://localhost:8080`
 
 # Flux
 Please go into the directory [flux](flux) if you like to try it.
+
+# Podman
+
+You can build the image via [podman](https://github.com/containers/podman):
+
+`podman build . --events-backend=file -f Dockerfile.multiStage -t surenpi/learn-pipeline-go`
