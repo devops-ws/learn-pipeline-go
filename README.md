@@ -9,6 +9,14 @@ Start it by following command:
 
 then you can visit it via: `curl http://localhost:8080`
 
+## APIs
+This project offers the following APIs:
+
+| Path | Description |
+|---|---|
+| `/` | Print a hello world message. |
+| `/version` | Print the version of this project. |
+
 ## Flux
 Please go into the directory [flux](flux) if you like to try it.
 
