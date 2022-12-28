@@ -3,4 +3,6 @@ build:
 	chmod u+x go-server
 
 image:
-	docker build . -t devopsws/go-server
+	docker build . -t devopsws/go-server -f Dockerfile.multiStage --build-arg VERSION=dev
+run: image
+	docker run --rm -p 8080:80 devopsws/go-server
