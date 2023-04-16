@@ -1,0 +1,9 @@
+pipeline {
+  stages {
+    stage('clone') {
+      steps {
+        echo "1"
+      }
+    }
+  }
+}
