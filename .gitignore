@@ -4,3 +4,4 @@ go-server
 # helm charts
 *.tgz
 .DS_Store
+bin/
