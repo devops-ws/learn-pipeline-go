@@ -2,11 +2,20 @@ package auth
 
 import (
 	"fmt"
+<<<<<<< HEAD
 	"github.com/go-session/session"
 	"golang.org/x/oauth2"
 	"net/http"
 	"os"
 	"path/filepath"
+=======
+	"net/http"
+	"os"
+	"path/filepath"
+
+	"github.com/go-session/session"
+	"golang.org/x/oauth2"
+>>>>>>> 57c8b23 (add api testing (#51))
 )
 
 type Auth struct {
@@ -65,6 +74,7 @@ func (a *Auth) AuthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *Auth) Callback(w http.ResponseWriter, r *http.Request) {
+<<<<<<< HEAD
 	r.ParseForm()
 	state := r.Form.Get("state")
 	if state != "xyz" {
@@ -95,11 +105,46 @@ func (a *Auth) Callback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.Redirect(w, r, a.homePage, http.StatusFound)
+=======
+	// r.ParseForm()
+	// state := r.Form.Get("state")
+	// if state != "xyz" {
+	// 	http.Error(w, "State invalid", http.StatusBadRequest)
+	// 	return
+	// }
+	// code := r.Form.Get("code")
+	// if code == "" {
+	// 	http.Error(w, "Code not found", http.StatusBadRequest)
+	// 	return
+	// }
+	// token, err := config.Exchange(r.Context(), code, oauth2.SetAuthURLParam("code_verifier", "s256example"))
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+
+	// // get userInfo, save it to session
+	// if userInfo, err := oauth.GetUserInfo("authServerURL", token.AccessToken); err == nil {
+	// 	store, err := session.Start(r.Context(), w, r)
+	// 	if err != nil {
+	// 		http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 		return
+	// 	}
+	// 	store.Set("userinfo", userInfo)
+	// 	store.Save()
+	// }
+
+	// http.Redirect(w, r, a.homePage, http.StatusFound)
+>>>>>>> 57c8b23 (add api testing (#51))
 }
 
 func (a *Auth) RequestCode(w http.ResponseWriter, r *http.Request) {
 	u := a.config.AuthCodeURL("xyz",
+<<<<<<< HEAD
 		oauth2.SetAuthURLParam("code_challenge", genCodeChallengeS256("s256example")),
+=======
+		oauth2.SetAuthURLParam("code_challenge", `genCodeChallengeS256("s256example")`),
+>>>>>>> 57c8b23 (add api testing (#51))
 		oauth2.SetAuthURLParam("code_challenge_method", "S256"))
 	http.Redirect(w, r, u, http.StatusFound)
 }
