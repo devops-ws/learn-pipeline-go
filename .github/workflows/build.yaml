@@ -30,7 +30,7 @@ jobs:
         tags: ${{ steps.docker_meta.outputs.tags }}
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: Dockerfile.multiStage
-        outputs: type=tar,dest=image.tar.gz
+        outputs: type=oci,dest=image.tar.gz
         push: false
         platforms: linux/amd64,linux/arm64
     - name: Start Server
