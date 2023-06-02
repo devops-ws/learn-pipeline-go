@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+var version string
+
 type Version struct {
 	Log *log.Logger
 }

@@ -1,9 +1,10 @@
-FROM golang AS builder
+FROM golang:1.18 AS builder
 
 WORKDIR /work
 COPY . .
+ARG VERSION=dev
 
-RUN CGO_ENABLED=0 go build -o go-server -ldflags "-w"
+RUN CGO_ENABLED=0 go build -o go-server -ldflags "-w -s -X github.com/devopsws/learn-pipeline-go/pkg/handler.version=${VERSION}"
 
 FROM gruebel/upx:latest as upx
 COPY --from=builder /work/go-server /work/go-server
