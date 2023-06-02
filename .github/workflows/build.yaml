@@ -34,7 +34,7 @@ jobs:
         platforms: linux/amd64,linux/arm64
     - name: Start Server
       run: |
-        docker run -d -p 8899:8899 devopsws/go-server:latest
+        docker run -d -p 8899:8899 devopsws/go-server:${{ steps.docker_meta.outputs.labels }}
         curl https://github.com/LinuxSuRen/api-testing/releases/download/v0.0.11/atest-linux-amd64.tar.gz -L -o atest-linux-amd64.tar.gz
         tar xzvf atest-linux-amd64.tar.gz atest
         ./atest run -p testing/*.yaml
