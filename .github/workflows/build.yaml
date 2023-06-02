@@ -30,12 +30,12 @@ jobs:
         tags: ${{ steps.docker_meta.outputs.tags }}
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: Dockerfile.multiStage
-        outputs: type=oci,dest=image.tar.gz
+        outputs: type=tar,dest=image.tar.gz
         push: false
         platforms: linux/amd64,linux/arm64
     - name: Start Server
       run: |
-        docker load -i image.tar.gz
+        docker load -i linux/amd64/image.tar.gz
         docker run -d -p 8899:8899 ${{ steps.docker_meta.outputs.tags }}
         curl https://github.com/LinuxSuRen/api-testing/releases/download/v0.0.11/atest-linux-amd64.tar.gz -L -o atest-linux-amd64.tar.gz
         tar xzvf atest-linux-amd64.tar.gz atest
