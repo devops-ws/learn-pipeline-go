@@ -30,7 +30,8 @@ jobs:
         tags: ${{ steps.docker_meta.outputs.tags }}
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: Dockerfile.multiStage
-        push: true
+        outputs: type=docker
+        push: false
         platforms: linux/amd64,linux/arm64
     - name: Start Server
       run: |
