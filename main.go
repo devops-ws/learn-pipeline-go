@@ -6,17 +6,18 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/devopsws/learn-pipeline-go/pkg/handler"
-	"github.com/devopsws/learn-pipeline-go/pkg/handler/auth"
-	"github.com/devopsws/learn-pipeline-go/pkg/oauth"
-	"github.com/go-session/session"
-	"golang.org/x/oauth2"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/devopsws/learn-pipeline-go/pkg/handler"
+	"github.com/devopsws/learn-pipeline-go/pkg/handler/auth"
+	"github.com/devopsws/learn-pipeline-go/pkg/oauth"
+	"github.com/go-session/session"
+	"golang.org/x/oauth2"
 )
 
 const (
@@ -98,7 +99,7 @@ func main() {
 	})
 
 	svr := http.Server{
-		Addr:    ":80",
+		Addr:    ":8899",
 		Handler: sm,
 	}
 

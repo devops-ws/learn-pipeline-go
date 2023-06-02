@@ -1,0 +1,12 @@
+#!api-testing
+# yaml-language-server: $schema=https://gitee.com/linuxsuren/api-testing/raw/master/sample/api-testing-schema.json
+name: Gitlab
+api: http://localhost:8899/
+items:
+- name: version
+  request:
+    api: /version
+  expect:
+    statusCode: 200
+    bodyFieldsExpect:
+      version: 1.0.0
