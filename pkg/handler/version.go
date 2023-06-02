@@ -13,5 +13,5 @@ type Version struct {
 }
 
 func (h *Version) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "version "+version)
+	fmt.Fprintf(w, "{ \"version\": \"1.0.0\"}")
 }
