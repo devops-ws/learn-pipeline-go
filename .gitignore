@@ -5,3 +5,4 @@ go-server
 *.tgz
 .DS_Store
 bin/
+dist/
